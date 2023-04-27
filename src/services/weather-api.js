@@ -1,4 +1,4 @@
-export const fetchWeather = async ({city_name}) => {
+export const fetchWeatherAPI = async ({city_name}) => {
     const response = await fetch("http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=456e510c51916110bb552ffb1a3698c6")
     const deserailziedResponse = await response.json()
     return deserailziedResponse;
