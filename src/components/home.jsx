@@ -16,17 +16,22 @@ export default () => {
             setRes(response);
             console.log(response);
             setLoading(false);
+            setCity("")
         })
+    }
+    const newSearch = (city) => {
+        setRes("")
+        setCity({city})
     }
 
     return (
         <>
             {/* This  could be  a separate component */}
-            <View style={{ marginBottom: 10 }}>
-                <TextInput label="queryCity" mode='outlined' placeholder='Search city' value={city} onChange={setCity}></TextInput>
+            <View style={{ marginBottom: 5 }}>
+                <TextInput label="city" mode='flat' placeholder='Search city' value={city} onChange={newSearch}></TextInput>
             </View>
             {/* This  could be  a separate component */}
-            <Button mode="contained" onPress={fetchWeather}>
+            <Button mode="contained" onPress={fetchWeather} style={{marginBottom:20}}>
                 {loading ? "Loading..." : "Show me the weather!"}
             </Button>
             {/* Call weather front-end component */}
