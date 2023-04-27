@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, Card, Dialog, Divider, Text } from "react-native-paper";
+
 
 export default ({res}) => {
     const [dialogVisible, setDialogVisible] = useState(false);
@@ -7,11 +8,18 @@ export default ({res}) => {
     const showDialog = () => setDialogVisible(true);
     const hideDialog = () => setDialogVisible(false);
 
-    if (res.cod == 404) {
-        showDialog;
-    }
+    
+    useEffect(() => {
+        if (res.cod == 404) {
+            showDialog();
+        }
+        
+    }, [res.cod])
+    
+
     return <>
-        {res && res.cod === 200 && <Card mode="elevated">
+        {res && res.cod === 200 ? (
+        <Card mode="elevated">
             <Card.Content>
                 {/* {res && <> */}
                 <Text variant="headlineLarge"  style={{ textTransform: 'capitalize'}}>{res.weather[0].description} </Text>
@@ -25,16 +33,29 @@ export default ({res}) => {
                 <Text> Humidity: {res.main.humidity}% | Pressure: {res.main.pressure}hPA </Text>
                 {/* </>} */}
             </Card.Content>
-        </Card>}
-        {res && res.cod === 404 && 
-        <Dialog>
-            <Dialog.Title>City not found!</Dialog.Title>
-            <Dialog.Content>Are you sure you spelt it correctly?</Dialog.Content>
+        </Card>
+        ) : null}
+        <Dialog visible={dialogVisible} onDismiss={hideDialog}>
+            <Dialog.Icon icon="map-marker-question-outline"/>
+            <Dialog.Title>City not found</Dialog.Title>
+            <Dialog.Content>
+                <Text>Are you sure you spelt it correctly?</Text>
+            </Dialog.Content>
             <Dialog.Actions>
                 <Button onPress={hideDialog}>Retry</Button>
             </Dialog.Actions>
         </Dialog>
-        }
+        {/* {res && res.cod === 404 ? (
+            <Card>
+                <Card.Content>
+                    <Text>City not found!</Text>
+                    <Text>Are you sure you spelt it correctly?</Text>
+                </Card.Content>
+                <Card.Actions>
+                    <Button> Retry </Button>
+                </Card.Actions>
+            </Card>
+        ):null } */}
     </>
 }
 

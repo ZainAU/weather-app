@@ -10,25 +10,28 @@ export default () => {
     const [res, setRes] = useState("");
     const [loading, setLoading] = useState(false)
 
-    const fetchWeather = (city) => {
+    const fetchWeather = () => {
         setLoading(true)
-        fetchWeatherAPI({city}).then(response => {
+        setRes("")
+        fetchWeatherAPI(city).then(response => {
             setRes(response);
             console.log(response);
+            console.log({city})
             setLoading(false);
-            setCity("")
+            // setCity("")
         })
     }
-    const newSearch = (city) => {
+    const refresh = () => {
         setRes("")
-        setCity({city})
+        console.log(res)
+        console.log(city)
     }
 
     return (
         <>
             {/* This  could be  a separate component */}
             <View style={{ marginBottom: 5 }}>
-                <TextInput label="city" mode='flat' placeholder='Search city' value={city} onChange={newSearch}></TextInput>
+                <TextInput label="city" mode='flat' placeholder='Search city' value={city} onChangeText={setCity}></TextInput>
             </View>
             {/* This  could be  a separate component */}
             <Button mode="contained" onPress={fetchWeather} style={{marginBottom:20}}>
@@ -36,6 +39,9 @@ export default () => {
             </Button>
             {/* Call weather front-end component */}
             <WeatherCard res={res}/>
+            <Button onPress={refresh}>
+                Reset
+            </Button>
         </>
     )
 }
