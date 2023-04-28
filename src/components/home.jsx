@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { View } from 'react-native';
-import { Button, Card, TextInput } from 'react-native-paper';
+import { Button, Card, TextInput, Chip } from 'react-native-paper';
 import { fetchWeatherAPI } from '../services/weather-api';
 import WeatherCard from './weather-card';
 import { Text } from 'react-native';
@@ -34,6 +34,7 @@ export default () => {
     };
 
     const selectFavorite = (city) => {
+        if (city === "") return;
         const favorite = favorites.find(fav => fav.city === city);
         setRes(favorite.weather);
         setCity(city);
@@ -64,22 +65,21 @@ export default () => {
                 mode="contained"
                 onPress={addToFavorites}
                 disabled={!isWeatherCardDisplayed}
+                style={{marginBottom: 10, marginTop: 10}}
             >Add to Favorites</Button>
             <Button onPress={refresh}>
                 Reset
             </Button>
             {/* Display favorite cities */}
-            <View>
                 {/* <FavoriteCities/> */}
-                <Card>
-                <View>
-                    <Text>Favorite Cities:</Text>
+            <Card>
+                <Card.Content>
+                    <Text variant="displayLarge">Favorite Cities:</Text>
                 {favorites.map(fav => (
-                    <Text key={fav.city} onPress={() => selectFavorite(fav.city)}>{fav.city}</Text>
+                    <Chip key={fav.city} onPress={() => selectFavorite(fav.city)}>{fav.city}</Chip>
                 ))}
-            </View>
-                </Card> 
-            </View>
+                </Card.Content>
+            </Card> 
         </>
     );
 };

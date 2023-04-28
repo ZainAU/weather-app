@@ -1,17 +1,20 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, ScrollView } from 'react-native';
+import { Provider } from 'react-native-paper';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Home from './src/components/home';
 
 export default function App() {
   return (
+      <Provider>
     <SafeAreaProvider>
-      <View style={styles.container}>
-        {/* <Home/> */}
+      <ScrollView style={styles.container}>
         <Home/>
         <StatusBar style="auto" />
-      </View>
+        {/* <a href="https://www.pexels.com">Photos provided by Pexels</a> */}
+      </ScrollView>
     </SafeAreaProvider>
+      </Provider>
   );
 }
 
