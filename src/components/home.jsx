@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import { Button, Card, TextInput } from 'react-native-paper';
 import { fetchWeatherAPI } from '../services/weather-api';
 import WeatherCard from './weather-card';
@@ -71,11 +71,11 @@ export default () => {
             {/* Display favorite cities */}
             <View>
                 {/* <FavoriteCities/> */}
-                <Card>
+                <Card style={{padding:10}}>
                 <View>
-                    <Text>Favorite Cities:</Text>
+                    <Text style={{fontSize: 15, fontWeight:'bold'}}>Favorite Cities - Click to see the weather today:</Text>
                 {favorites.map(fav => (
-                    <Text key={fav.city} onPress={() => selectFavorite(fav.city)}>{fav.city}</Text>
+                    <Text style={{padding: 10}} key={fav.city} onPress={() => selectFavorite(fav.city)}>{fav.city}</Text>
                 ))}
             </View>
                 </Card> 
@@ -83,3 +83,5 @@ export default () => {
         </>
     );
 };
+
+
