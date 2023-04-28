@@ -70,15 +70,15 @@ export default () => {
             </Button>
             {/* Display favorite cities */}
             <View>
-                <FavoriteCities/>
-                {/* <Card>
+                {/* <FavoriteCities/> */}
+                <Card>
                 <View>
                     <Text>Favorite Cities:</Text>
                 {favorites.map(fav => (
                     <Text key={fav.city} onPress={() => selectFavorite(fav.city)}>{fav.city}</Text>
                 ))}
             </View>
-                </Card> */}
+                </Card> 
             </View>
         </>
     );
