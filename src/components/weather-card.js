@@ -52,7 +52,7 @@ export default ({res}) => {
                 <Text></Text>
                 <Text>Temperature: </Text>
                 <Text variant="displayLarge"> {Math.round(res.main.temp - 273.15)}°C </Text>
-                <Text style={{color: getTempColor(res.main.temp)}}>Feels Like: </Text>
+                <Text>Feels Like: </Text>
                 <Text variant="displayMedium"> {Math.round(res.main.feels_like - 273.15)}°C </Text>
                 <Text>⬆ {Math.round(res.main.temp_max - 273.15)}°C | ⬇ {Math.round(res.main.temp_min - 273.15)}°C</Text>
                 <Text> Humidity: {res.main.humidity}% | Pressure: {res.main.pressure}hPA </Text>
