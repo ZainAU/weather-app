@@ -21,9 +21,18 @@ export default () => {
             console.log(response);
             console.log({city});
             setLoading(false);
-            setIsWeatherCardDisplayed(true);
+            if (response.cod === 200) {
+                setIsWeatherCardDisplayed(true);
+            }
         });
     };
+
+    useEffect(() => {
+        // Check if the city is not empty and update the isWeatherCardDisplayed state accordingly
+        // setIsWeatherCardDisplayed(city.trim().length > 0);
+        setIsWeatherCardDisplayed(false);
+      }, [city]);
+    
 
     const addToFavorites = () => {
         if (favorites.findIndex(fav => fav.city === city) === -1) {

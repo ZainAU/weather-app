@@ -66,6 +66,7 @@ export default ({res}) => {
         // </View>
         ) : null}
         <Portal>
+            {/* these could be separate components, but we ran out of time */}
         <Dialog visible={dialogVisible} onDismiss={hideDialog}>
             <Dialog.Icon icon="map-marker-question-outline"/>
             <Dialog.Title>City not found</Dialog.Title>
@@ -77,7 +78,7 @@ export default ({res}) => {
             </Dialog.Actions>
         </Dialog>
         {/* General Error dialog */}
-        <Dialog visible={genDialogVisible} onDismiss={hideGenDialog} style={dialogStyle}>
+        <Dialog visible={genDialogVisible} onDismiss={hideGenDialog}>
             <Dialog.Icon icon="map-marker-question-outline"/>
             <Dialog.Title>That value seems to be incorrect</Dialog.Title>
             <Dialog.Content>
@@ -88,20 +89,5 @@ export default ({res}) => {
             </Dialog.Actions>
         </Dialog>
         </Portal>
-        {/* {res && res.cod === 404 ? (
-            <Card>
-                <Card.Content>
-                    <Text>City not found!</Text>
-                    <Text>Are you sure you spelt it correctly?</Text>
-                </Card.Content>
-                <Card.Actions>
-                    <Button> Retry </Button>
-                </Card.Actions>
-            </Card>
-        ):null } */}
     </>
 }
-
-const dialogStyle = {
-    overlay: {zIndex: 1000}
-};
