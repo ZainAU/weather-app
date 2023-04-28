@@ -76,7 +76,9 @@ export default () => {
                 <Card.Content>
                     <Text variant="displayLarge">Favorite Cities:</Text>
                 {favorites.map(fav => (
-                    <Chip key={fav.city} onPress={() => selectFavorite(fav.city)}>{fav.city}</Chip>
+                    // <View style={{ width: 150 }}>
+                    <Chip mode="outlined" elevated={true} key={fav.city} onPress={() => selectFavorite(fav.city)}>{fav.city}</Chip>
+                    // </View>
                 ))}
                 </Card.Content>
             </Card> 
